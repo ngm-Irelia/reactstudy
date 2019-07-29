@@ -28,3 +28,231 @@ npm install react-app-rewired --save-dev
 
 #对react-app-rewired进行简单的配置
 npm install customizr-cra --save-dev 
+
+
+# ------------------------ 官网学习 ------------------------------------
+
+
+## 1 数据流 自上而下
+
+## 2 事件处理
+
+### 1) React 中不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault 
+例如，传统的 HTML 中阻止链接默认打开一个新页面，
+
+function ActionLink() {
+  function handleClick(e) {
+    e.preventDefault();
+    console.log('The link was clicked.');
+  }
+
+  return (
+    <a href="#" onClick={handleClick}>
+      Click me
+    </a>
+  );
+}
+
+### 2) 必须谨慎对待 JSX 回调函数中的 this
+通常情况下，如果你没有在方法后面添加 ()，例如 onClick={this.handleClick}，你应该为这个方法绑定 this。
+
+#### a： 绑定this有多种方法： 1.在构造函数中 this.func = this.func.bind( this );
+
+#### b： 2.在DOM元素中 <button onClick={this.del.bind(this, id)}>Delete </button>
+
+#### c： class fields语法   这是 *实验性* 语法 。如果不支持就换一种方式
+class LoggingButton extends React.Component {
+  // 此语法确保 `handleClick` 内的 `this` 已被绑定。
+  // 注意: 这是 *实验性* 语法。
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me
+      </button>
+    );
+  }
+}
+
+#### d： 在回调中使用箭头函数  ， 不建议，如果是传给子组件，会造成不必要的渲染
+class LoggingButton extends React.Component {
+  handleClick() {
+    console.log('this is:', this);
+  }
+
+  render() {
+    // 此语法确保 `handleClick` 内的 `this` 已被绑定。
+    return (
+      <button onClick={(e) => this.handleClick(e)}>
+        Click me
+      </button>
+    );
+  }
+}
+
+
+## 3 条件渲染
+
+### if的方式
+### 与运算符 &&
+ true && expression 总是会返回 expression,   （expression其实就是要return的内容
+ 而 false && expression 总是会返回 false
+### 三目运算符
+
+## 4 阻止组件渲染
+###  类组件中让 render 方法直接返回 null
+###  函数组件中让 return 直接返回 null
+
+
+
+## 5 列表 & Key
+如果列表项目的顺序可能会变化，我们不建议使用索引来用作 key 值，因为这样做会导致性能变差，还可能引起组件状态的问题。
+大概原因是这样  比如 数组 [{id:'t1',name;"aa"},{id:'t2',name;"bb"},{id:'t3',name;"cc"}]
+       id是固定不变的！
+如果我们使用数组下标，作为key，生成dom元素  0 -> aa   1-> bb  2 -> cc
+如果数组内容顺序发生变化，[{id:'t4',name;"dd"},{id:'t1',name;"aa"},{id:'t2',name;"bb"},{id:'t3',name;"cc"}]
+
+重新渲染dom元素后 key的对应： 0 -> dd  1 -> aa   2-> bb  3 -> cc
+
+根据diff算法，有四处不同！！ 
+
+如果我们一开始就使用id作为key，这时候，diff算法只会检测到 一处 dd 的不同。 性能会有很大差距
+
+
+## 6 表单
+
+### 受控组件   被 React 以 state 控制取值的表单输入元素就叫做“受控组件”。
+<input type="text">, <textarea> 和 <select> 等
+
+###  【Formik 学习】 【非受控组件 学习】 
+https://jaredpalmer.com/formik/
+https://zh-hans.reactjs.org/docs/uncontrolled-components.html
+
+
+## 7 状态提升  反向数据流
+ 比如有两个组件，他们想根据彼此的一个数据状态进行对应操作。 我们需要 进行状态提升。
+ 把他们共用的状态，都提升到父组件中。 通过调用父组件的函数，修改父组件中的数据。
+
+## 8 组合 vs 继承
+
+组合： 使用props.children ，加载 父组件中的内容
+
+不推荐继承
+
+# -------------------------- 高级指引 ----------------------
+
+## 1 网络无障碍辅助功能 （Accessibility，也被称为 a11y 
+
+### 语义化的 HTML
+使用 Fragment 解决无效dom元素的问题
+import React, { Fragment } from 'react';
+
+<Fragment>
+  <dt>{item.term}</dt>
+  <dd>{item.description}</dd>
+</Fragment>
+
+生成的dom树中，不会有Fragment
+
+### 无障碍表单
+
+for 在 JSX 中应该被写作 htmlFor：
+<label htmlFor="namedInput">Name:</label>
+<input id="namedInput" type="text" name="name"/>
+
+DOM 元素的 Refs 在 React 中设置焦点
+this.inputElement = React.createRef();
+
+ <CustomTextInput inputRef={this.inputElement} />  可以这样把父组件元素传给子组件
+
+
+## 2 Context 
+ 很多不同层级的组件需要访问同样一些的数据 时使用，减少数据的逐级传递
+ 缺点： 使得组件的复用性变差
+
+#### 注意点：
+
+ Provider 接收一个 value 属性，传递给消费组件。
+ 一个 Provider 可以和多个消费组件有对应关系。
+ 多个 Provider 也可以嵌套使用，里层的会覆盖外层的数据
+
+
+#### 使用方式：
+
+1. 
+const MyContext = createContext();
+const { Provider,Consumer } = MyContext;
+
+Bar.contextType = MyContext;  //组件Bar想使用其context的值，
+需要在其本身的contextType 绑定对应的 context
+
+使用时： let value = this.context;
+
+2.   推荐第二种！！！
+使用 Context.Consumer
+<MyContext.Consumer>
+  {value => /* 基于 context 值进行渲染*/}
+</MyContext.Consumer>
+
+一个小的注意点： Provider的value最好是 传入state中的数据。 而不是直接传入一个对象。
+因为在其父元素渲染的时候，这里可能会造成不必要的重新渲染。
+
+## 3 refs转发
+
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+// 你可以直接获取 DOM button 的 ref：
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+
+这样，使用 FancyButton 的组件可以获取底层 DOM 节点 button 的 ref ，并在必要时访问，就像其直接使用 DOM button 一样。
+
+### 步骤1：通过调用 React.createRef 创建一个 ref 并将其赋值给 ref 变量
+
+### 步骤2：通过指定ref为JSX属性，将其向下传递给 <FancyButton ref={ref}>。
+
+### 步骤3：React 传递ref给fowardRef内函数 (props, ref) => ...，作为其第二个参数。
+
+### 步骤4：我们向下转发该 ref 参数到 <button ref={ref}>，将其指定为 JSX 属性。
+
+### 步骤5：当 ref 挂载完成，ref.current 将指向 <button> DOM 节点。
+
+第二个参数 ref 只在使用 React.forwardRef 定义组件时存在。常规函数和 class 组件不接收 ref 参数，且 props 中也不存在 ref。
+
+Ref 转发不仅限于 DOM 组件，你也可以转发 refs 到 class 组件实例中。
+
+
+后半部分涉及到高阶组件，到时候回看
+
+## 4 Fragments   允许你将子列表分组，而无需向 DOM 添加额外节点
+
+短语法  <> </>
+
+## 5 高阶组件HOC 
+它是一种基于 React 的组合特性而形成的设计模式。 高阶组件是参数为组件，返回值为新组件的函数
+
+### 注意事项
+
+#### 不要在 render 方法中使用 HOC
+React 的 diff 算法（称为协调）使用组件标识来确定它是应该更新现有子树还是将其丢弃并挂载新子树。 如果从 render 返回的组件与前一个渲染中的组件相同（===），则 React 通过将子树与新子树进行区分来递归更新子树。 如果它们不相等，则完全卸载前一个子树。
+
+render() {
+  // 每次调用 render 函数都会创建一个新的 EnhancedComponent
+  // EnhancedComponent1 !== EnhancedComponent2
+  const EnhancedComponent = enhance(MyComponent);
+  // 这将导致子树每次渲染都会进行卸载，和重新挂载的操作！
+  return <EnhancedComponent />;
+}
+
+这不仅仅是性能问题 - 重新挂载组件会导致该组件及其所有子组件的状态丢失。
+
+#### Refs 不会被传递
+
+#### 务必复制静态方法
