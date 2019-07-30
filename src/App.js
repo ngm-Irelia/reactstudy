@@ -1,6 +1,6 @@
 import React from 'react'; 
 
-import {Header, Lisk, TodoInput, Counter, Website} from './components/index';
+import {Header, Lisk, TodoInput, Counter, Website, CarList} from './components/index';
 
 class App extends React.Component {
 
@@ -64,6 +64,10 @@ class App extends React.Component {
 
         <Website ></Website>
 
+        ----------------------------------------------- redux -------------------App
+
+
+        <CarList />
 
 
       </div>
