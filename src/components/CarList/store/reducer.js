@@ -42,6 +42,7 @@ export default( (state = initState, action)=>{
     return newState;
   }
 
+  // 这里一定要return ，在一开始的时候，返回默认的state
   return state;
 
 })

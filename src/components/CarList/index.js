@@ -58,4 +58,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+// 第一个参数，从store把state注入到当前组件的props上。
+// 第二个参数，把action生成的方法（reducer里面的方法）注入到当前组件中
 export default connect(mapStateToProps,mapDispatchToProps)(CarList)

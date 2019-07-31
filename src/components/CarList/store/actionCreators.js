@@ -1,7 +1,8 @@
-/* 统一存放action */
+/* 统一存放action  作用就是生成了 action！！*/
 import { CART_INCREMENT, CART_DECREMENT } from './actionTypes';
 import axios from 'axios';
 
+// 其实是个函数 ， 返回 的是一个action
 export const increment = (id) => ({
 	type: CART_INCREMENT,
 	id:id
