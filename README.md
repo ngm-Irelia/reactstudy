@@ -1,5 +1,6 @@
 #redux 27 28课程后面学习，自己实现一个简易redux
 npm i redux -S
+npm i redux-thunk -S
 
 # 让cra支持@装饰器写法
 1.不管你需要配置什么，我们最好的方式就是使用 react-app-rewired 这个包来对cra创建的项目进行轻微的配置调整
