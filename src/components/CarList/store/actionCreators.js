@@ -18,7 +18,7 @@ export const increment = (id) => {
 				type: CART_INCREMENT,
 				id:id
 			})
-		}, 2000);
+		}, 10);
 	}
 }
 
