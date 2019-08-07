@@ -1,5 +1,5 @@
 import React,{Component, createContext } from 'react';
-
+import { Button } from 'antd';
 
 //实现 context   Provider  共享数据
 
@@ -80,9 +80,9 @@ class CounterBtn extends Component {
          
           let handler = this.props.type === "increment" ? ctx.onIncrementCount : ctx.onDecrementCount;
           return (
-            <button onClick={handler}>
+            <Button loading onClick={handler}>
               {this.props.children}
-            </button>
+            </Button>
           )
         }
       }

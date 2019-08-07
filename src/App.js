@@ -2,6 +2,11 @@ import React from 'react';
 
 import {Header, Lisk, TodoInput, Counter, Website, CarList} from './components/index';
 
+import { Users, Home } from './views';
+
+import { Route, Link, Redirect, Switch } from 'react-router-dom';
+
+
 class App extends React.Component {
 
   state = {
@@ -69,7 +74,18 @@ class App extends React.Component {
 
         <CarList />
 
+        <Link to="/Home">首页</Link>
+        <Link to="/Users">用户</Link>
 
+      <Switch>
+        <Route component={Users} path="/Users" exact />  {/* 必须完全匹配 */}
+        <Route render={()=>{
+          return <Home name="牛贵敏"/>
+        }} path="/Home" /> 
+         
+        <Redirect to="/Home" from="/" /> {/* 重定向，如果前面的都没找到，调找到这个页面 */}
+      </Switch>
+        
       </div>
     )
   }

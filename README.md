@@ -2,7 +2,18 @@
 npm i redux -S
 npm i redux-thunk -S
 
+# react-router 
+npm i react-router-dom -S
+
+#antd
+npm i antd -S
+npm i react-app-rewired customize-cra   #需要使用这两个组件，更好的使用antd
+npm i babel-plugin-import -D
+npm i less less-loader -D
+
 # 让cra支持@装饰器写法
+npm i @babel/plugin-proposal-decorators -D
+
 1.不管你需要配置什么，我们最好的方式就是使用 react-app-rewired 这个包来对cra创建的项目进行轻微的配置调整
 2.安装之后，在package.json 里面把 react-scripts替换成 react-app-rewired
 3.在根目录创建一个config-overrides.js
