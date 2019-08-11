@@ -5,7 +5,7 @@ class Users extends React.Component {
 
   handleBtnClick(e){
     this.props.history.push({
-      pathname:"/Home",
+      pathname:"/home",
       state:{
         id:"123"
       }
@@ -18,7 +18,7 @@ class Users extends React.Component {
     console.log(this.props)
     return (
       <div>
-        <button onClick={this.handleBtnClick.bind(this)}>返回首页</button>
+        <Button onClick={this.handleBtnClick.bind(this)}>返回首页</Button>
         <Badge count={100} overflowCount={9} showZero>
           <span>message</span>
         </Badge>

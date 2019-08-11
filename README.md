@@ -19,6 +19,8 @@ npm i @babel/plugin-proposal-decorators -D
 3.在根目录创建一个config-overrides.js
 4.安装一个customize-cra。
 
+#路由懒加载
+npm i react-loadable -S
 
 #普通方式
 /* this.setState({

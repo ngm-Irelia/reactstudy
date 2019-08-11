@@ -4,11 +4,13 @@ import TodoInput from './TodoInput';
 import Counter from './Counter';
 import Website from './Website';
 import CarList from './CarList';
+import Loading from './Loading';
 export {
   Header,
   Lisk,
   TodoInput,
   Counter,
   Website,
-  CarList
+  CarList,
+  Loading
 }

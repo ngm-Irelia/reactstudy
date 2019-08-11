@@ -2,9 +2,10 @@ import React from 'react';
 
 import {Header, Lisk, TodoInput, Counter, Website, CarList} from './components/index';
 
-import { Users, Home } from './views';
+//import { Users, Home } from './views';
 
-import { Route, Link, Redirect, Switch } from 'react-router-dom';
+import { Link, Route, Switch, Redirect} from 'react-router-dom';
+import { adminRouter } from './routes';
 
 
 class App extends React.Component {
@@ -26,7 +27,6 @@ class App extends React.Component {
   }
 
   setInpuList(newValue){
-    console.log(newValue);
     this.setState({
       tabelList: this.state.tabelList.concat([{
         id:newValue,
@@ -38,19 +38,13 @@ class App extends React.Component {
   render(){
     return (
       <div>
-
-       
-
-         <Counter />
-
-
+        <Counter />
         <Header 
           title={this.state.title} 
           number={11}
         />
 
         <Lisk />
-
         <TodoInput setInpuList={this.setInpuList.bind(this)}/>
 
         {this.state.show ? <div>显示</div> : <div>隐藏</div> }
@@ -74,17 +68,31 @@ class App extends React.Component {
 
         <CarList />
 
-        <Link to="/Home">首页</Link>
-        <Link to="/Users">用户</Link>
+        <Link to="/home">首页</Link>
+        <Link to="/user">用户</Link>
 
-      <Switch>
-        <Route component={Users} path="/Users" exact />  {/* 必须完全匹配 */}
-        <Route render={()=>{
-          return <Home name="牛贵敏"/>
-        }} path="/Home" /> 
-         
-        <Redirect to="/Home" from="/" /> {/* 重定向，如果前面的都没找到，调找到这个页面 */}
-      </Switch>
+        ------------------------------  switch ------------ 
+        <Switch>
+          
+          {
+            adminRouter.map(route =>{
+              return (
+                <Route
+                  exact={route.exact} 
+                  key={route.pathname} 
+                  path={route.pathname} 
+                  render={ (routerProps) =>{
+                    return <route.component {...routerProps} />
+                  }}
+                />
+              )
+              
+            })
+          }
+
+          <Redirect to={adminRouter[0].pathname} from='/admin' exact />
+          <Redirect to="/404" />
+        </Switch>
         
       </div>
     )
