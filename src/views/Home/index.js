@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Button, Badge } from 'antd';
+import { Badge } from 'antd';
 
 import './home.less';
 

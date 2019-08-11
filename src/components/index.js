@@ -5,6 +5,7 @@ import Counter from './Counter';
 import Website from './Website';
 import CarList from './CarList';
 import Loading from './Loading';
+import Frame from './Frame';
 export {
   Header,
   Lisk,
@@ -12,5 +13,6 @@ export {
   Counter,
   Website,
   CarList,
-  Loading
+  Loading,
+  Frame
 }

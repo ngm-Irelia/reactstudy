@@ -8,7 +8,7 @@ import { ConfigProvider } from 'antd';
 import App from './App';
 
 import { homeRouter } from './routes';
-
+// 这里是放的多页面
 ReactDOM.render(
   <ConfigProvider locale={zhCN} >
     <Provider store={store}>
