@@ -30,6 +30,10 @@ systemctl enable cnpmjs.org.service
 ## 查看启动日志
 journalctl -u cnpmjs.org.service
 
+## 如果上面几条不行， 使用 bin 下面的cli.js
+./cli.js start 
+./cli.js stop
+
 #遇到问题 cnpmjs.org 总是自己Killed
 原因是内存不足   操作如下：
 
@@ -46,6 +50,20 @@ sudo mkswap /var/swapfile
 sudo swapon /var/swapfile
 
 swapon -s  管用!!
+
+#cnpmjs.org 上传 自己的包
+
+添加用户
+npm adduser --registry=http://47.94.8.210:7001
+登陆一下
+npm login --registry=http://47.94.8.210:7001
+发布
+npm publish --registry=http://47.94.8.210:7001
+
+也可以加上 --verbose参数来查看更详细的日志。
+
+安装测试一下，转到其他目录，输入命令：
+1 npm install fm --registry=http://47.94.8.210:7001
 
 #redux 27 28课程后面学习，自己实现一个简易redux
 npm i redux -S
