@@ -1,4 +1,4 @@
 export default {
-  baseUrl :"http:xxxx",
-  getTodo: '/todos'
+  baseUrl :"http://127.0.0.1:9600",
+  getUserList: '/user/getUserList'
 }

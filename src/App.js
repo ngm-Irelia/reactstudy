@@ -39,7 +39,7 @@ class App extends React.Component {
     return (
       <Frame>
         <div>
-          <Counter />
+          {/* <Counter />
           <Header 
             title={this.state.title} 
             number={11}
@@ -70,9 +70,9 @@ class App extends React.Component {
           <CarList />
 
           <Link to="/home">首页</Link>
-          <Link to="/user">用户</Link>
+          <Link to="/user">用户</Link> */}
 
-          ------------------------------  switch ------------ 
+          
           <Switch>
             
             {
