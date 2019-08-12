@@ -34,7 +34,8 @@ journalctl -u cnpmjs.org.service
 ./cli.js start 
 ./cli.js stop
 
-#遇到问题 cnpmjs.org 总是自己Killed
+#遇到问题 
+## cnpmjs.org 总是自己Killed
 原因是内存不足   操作如下：
 
 检查swap空间
@@ -50,6 +51,28 @@ sudo mkswap /var/swapfile
 sudo swapon /var/swapfile
 
 swapon -s  管用!!
+
+## 连接不上mysql
+先登陆到mysql：  
+./mysql -uroot -p
+
+选择数据库
+use mysql
+
+查看用户表
+SELECT host,user from user;
+
+设置
+GRANT ALL ON *.* TO 'root'@'%';
+
+##顺便 修改下用户ngm的密码：
+update user set authentication_string=password("niuguimin") where user='ngm';
+报错：  You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column 
+意思是没有主键不能更新，我们降低下数据库的安全等级：
+SET SQL_SAFE_UPDATES = 0;
+重复上面操作：ok
+flush privileges;  刷新
+
 
 #cnpmjs.org 上传 自己的包
 
