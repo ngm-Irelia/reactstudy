@@ -6,6 +6,47 @@ systemctl status nginx 可以查看nginx的运行状态
 systemctl stop nginx 可以 关闭nginx 服务
 systemctl restart nginx   重启nginx服务
 
+#ngm私库搭建 
+npm i -g cnpmjs.org   #安装完成会提示你安装在了哪，记得看哦 /usr/local/nodejs/lib/node_modules
+
+用户名、密码进入数据库
+mysql -uroot -p123456
+
+创建cnpm所需的数据库
+create database cnpmjs;
+
+切换到cnpm数据库
+use cnpmjs;
+
+导入cnpm数据库配置文件
+source /usr/local/nodejs/lib/node_modules/cnpmjs.org/docs/db.sql;
+
+## 刷新服务守护进程
+systemctl daemon-reload
+## 启动 cnpmjs.org 服务
+systemctl start cnpmjs.org.service
+## 设置开机启动
+systemctl enable cnpmjs.org.service
+## 查看启动日志
+journalctl -u cnpmjs.org.service
+
+#遇到问题 cnpmjs.org 总是自己Killed
+原因是内存不足   操作如下：
+
+检查swap空间
+swapon -s   
+
+创建swap分区文件
+sudo dd if=/dev/zero of=swapfile bs=1024 count=1048576 
+
+格式化新建的SWAP分区
+sudo mkswap /var/swapfile
+
+将swap文件变成swap分区
+sudo swapon /var/swapfile
+
+swapon -s  管用!!
+
 #redux 27 28课程后面学习，自己实现一个简易redux
 npm i redux -S
 npm i redux-thunk -S
