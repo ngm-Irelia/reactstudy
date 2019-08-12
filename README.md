@@ -1,3 +1,11 @@
+#部署到nginx服务器上的方式：
+yum install -y nginx   #命令安装nginx 服务器 /etc/nginx/ 
+
+systemctl start nginx 开启nginx服务
+systemctl status nginx 可以查看nginx的运行状态
+systemctl stop nginx 可以 关闭nginx 服务
+systemctl restart nginx   重启nginx服务
+
 #redux 27 28课程后面学习，自己实现一个简易redux
 npm i redux -S
 npm i redux-thunk -S
