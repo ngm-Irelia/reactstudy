@@ -7,6 +7,8 @@ import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { ConfigProvider } from 'antd';
 import App from './App';
 
+import "@ant-design/aliyun-theme/index.less";
+
 import { homeRouter } from './routes';
 // 这里是放的多页面
 ReactDOM.render(

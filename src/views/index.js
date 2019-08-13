@@ -14,6 +14,11 @@ const Users = Loadable({
   loading:Loading
 })
 
+const Edit = Loadable({
+  loader: ()=> import('./Users/edit'),
+  loading:Loading
+})
+
 const Home = Loadable({
   loader: ()=> import('./Home'),
   loading:Loading
@@ -39,5 +44,6 @@ export {
   Home,
   Settings,
   Article,
-  Notfound
+  Notfound,
+  Edit
 }

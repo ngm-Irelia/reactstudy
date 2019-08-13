@@ -1,10 +1,11 @@
 import React from 'react';
 import './frame.less';
+import "@ant-design/aliyun-theme/index.less";
 import { adminRouter } from '../../routes';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { withRouter } from 'react-router-dom';
 
-const { SubMenu } = Menu;
+ 
 const { Header, Content, Sider } = Layout;
 
 class Frame extends React.Component {
@@ -63,12 +64,17 @@ class Frame extends React.Component {
               
               {
                 adminRouter.map((item)=>{
-                  return <Menu.Item 
-                    key={item.pathname}
-                    onClick={this.onMenuClick}
-                  >
-                    {item.title}
-                  </Menu.Item>
+                  if(item.level === 1){
+                    return (
+                      <Menu.Item 
+                        key={item.pathname}
+                        onClick={this.onMenuClick}
+                      >
+                        {item.title}
+                      </Menu.Item>
+                    )
+                  }
+                  
                 })
               }
 

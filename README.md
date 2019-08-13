@@ -101,6 +101,9 @@ npm i react-app-rewired customize-cra   #需要使用这两个组件，更好的
 npm i babel-plugin-import -D
 npm i less less-loader -D
 
+##antd 换个主题
+npm install @ant-design/aliyun-theme
+
 # 让cra支持@装饰器写法
 npm i @babel/plugin-proposal-decorators -D
 

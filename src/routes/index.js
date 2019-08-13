@@ -3,7 +3,8 @@ import {
   Settings,
   Users,
   Home,
-  Notfound
+  Notfound,
+  Edit
 } from '../views';
 
 export const homeRouter = [
@@ -30,13 +31,23 @@ export const adminRouter = [
     pathname:'/admin/user',
     component: Users,
     title:'用户管理',
-    isNav:true
+    isNav:true,
+    level:1,
   },
   
   {
     pathname:'/admin/settings',
     component: Settings,
     title:'用户设置',
-    isNav:true
+    isNav:true,
+    level:1,
+  },
+
+  {
+    pathname:'/admin/user/edit',
+    component: Edit,
+    title:'用户修改',
+    isNav:true,
+    level:2,
   }
 ]

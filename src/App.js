@@ -79,7 +79,7 @@ class App extends React.Component {
               adminRouter.map(route =>{
                 return (
                   <Route
-                    exact={route.exact} 
+                    exact
                     key={route.pathname} 
                     path={route.pathname} 
                     render={ (routerProps) =>{

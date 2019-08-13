@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/aliyun-theme": "0.0.3",
     "antd": "^3.21.2",
     "axios": "^0.18.1",
     "customize-cra": "^0.4.1",
