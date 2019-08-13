@@ -58,19 +58,19 @@ class Frame extends React.Component {
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
               style={{ height: '100%', borderRight: 0 }}
-              selectedKeys={this.props.location.pathname}
+              selectedKeys={[this.props.location.pathname]}
             >
               
-            {
-              adminRouter.map((item)=>{
-                return <Menu.Item 
-                  key={item.pathname}
-                  onClick={this.onMenuClick}
-                >
-                  {item.title}
-                </Menu.Item>
-              })
-            }
+              {
+                adminRouter.map((item)=>{
+                  return <Menu.Item 
+                    key={item.pathname}
+                    onClick={this.onMenuClick}
+                  >
+                    {item.title}
+                  </Menu.Item>
+                })
+              }
 
               {/* <SubMenu
                 key="sub1"

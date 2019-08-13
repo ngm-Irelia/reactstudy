@@ -3,6 +3,30 @@ import { Button, Badge, Card, Table } from 'antd';
 import { getUserList } from '../../services';
 class Users extends React.Component {
 
+  constructor(){
+    super();
+    this.state = {
+      dataSource:[],
+      columns: [
+        {
+          title: '姓名',
+          dataIndex: 'username',
+          key: 'username',
+        },
+        {
+          title: 'id',
+          dataIndex: 'id',
+          key: 'id',
+        },
+        {
+          title: 'password',
+          dataIndex: 'password',
+          key: 'password',
+        },
+      ]
+    }
+  }
+
   handleBtnClick(e){
     this.props.history.push({
       pathname:"/home",
@@ -13,8 +37,12 @@ class Users extends React.Component {
   }
 
   componentDidMount(){
+    let _that = this;
     getUserList().then(function(response){
-      console.log(response)
+      let dataSource = response.data.users;
+      _that.setState({
+        dataSource:dataSource
+      })
     })
   }
 
@@ -23,39 +51,7 @@ class Users extends React.Component {
     // ！！ 使用render的时候没有，我们的解决办法在home组件中实现
     console.log(this.props)
 
-    const dataSource = [
-      {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-      },
-      {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-      },
-    ];
-    
-    const columns = [
-      {
-        title: '姓名',
-        dataIndex: 'name',
-        key: 'name',
-      },
-      {
-        title: '年龄',
-        dataIndex: 'age',
-        key: 'age',
-      },
-      {
-        title: '住址',
-        dataIndex: 'address',
-        key: 'address',
-      },
-    ];
-
+    const {dataSource, columns} = this.state;
 
     return (
       <div>
