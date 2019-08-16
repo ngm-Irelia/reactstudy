@@ -115,6 +115,11 @@ npm i @babel/plugin-proposal-decorators -D
 #路由懒加载
 npm i react-loadable -S
 
+
+#使用 echarts 可视化图表
+npm install zrender --save
+npm install echarts --save
+
 #普通方式
 /* this.setState({
   isLiked: !this.state.isLiked

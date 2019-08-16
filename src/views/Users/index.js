@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Badge, Card, Table } from 'antd';
+import { Button, Badge, Card, Table, Row, Col } from 'antd';
 import { getUserList } from '../../services';
 const ButtonGroup = Button.Group;
 
@@ -93,6 +93,12 @@ class Users extends React.Component {
         <Badge count={100} overflowCount={9} showZero>
           <span>message</span>
         </Badge>
+        <Row type="flex" justify="space-around">
+          <Col span={4}>col-4</Col>
+          <Col span={4}>col-4</Col>
+          <Col span={4}>col-4</Col>
+          <Col span={4}>col-4</Col>
+        </Row>
       </div>
     )
   }

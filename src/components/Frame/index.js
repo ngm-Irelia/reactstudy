@@ -1,6 +1,7 @@
 import React from 'react';
 import './frame.less';
-import "@ant-design/aliyun-theme/index.less";
+//import "@ant-design/aliyun-theme/index.less";
+import 'antd/dist/antd.css';
 import { adminRouter } from '../../routes';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { withRouter } from 'react-router-dom';
