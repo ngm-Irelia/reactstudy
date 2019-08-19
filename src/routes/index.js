@@ -3,11 +3,18 @@ import {
   Settings,
   Users,
   Home,
+  Login,
   Notfound,
   Edit
 } from '../views';
 
 export const homeRouter = [
+  {
+    pathname:'/login',
+    component: Login,
+    title:'登录',
+    isNav:true
+  },
   {
     pathname:'/home',
     component: Home,

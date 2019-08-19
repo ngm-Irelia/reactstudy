@@ -24,6 +24,11 @@ const Home = Loadable({
   loading:Loading
 })
 
+const Login = Loadable({
+  loader: ()=> import('./Login'),
+  loading:Loading
+})
+
 const Article = Loadable({
   loader: ()=> import('./Article'),
   loading:Loading
@@ -42,6 +47,7 @@ const Notfound = Loadable({
 export { 
   Users,
   Home,
+  Login,
   Settings,
   Article,
   Notfound,
