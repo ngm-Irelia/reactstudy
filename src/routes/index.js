@@ -4,7 +4,8 @@ import {
   Users,
   Home,
   Notfound,
-  Edit
+  Edit,
+  Message
 } from '../views';
 
 export const homeRouter = [
@@ -47,6 +48,13 @@ export const adminRouter = [
     pathname:'/admin/user/edit',
     component: Edit,
     title:'用户修改',
+    isNav:true,
+    level:2,
+  },
+  {
+    pathname:'/admin/user/log',
+    component: Message,
+    title:'用户日志',
     isNav:true,
     level:2,
   }

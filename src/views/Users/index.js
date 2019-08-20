@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button, Badge, Card, Table, Row, Col } from 'antd';
 import { getUserList } from '../../services';
+
+import { connect } from 'react-redux';
+
 const ButtonGroup = Button.Group;
 
 class Users extends React.Component {
@@ -31,9 +34,16 @@ class Users extends React.Component {
     console.log(record)
   }
 
-  editUser = (record) => {
+  logUser = (record) => {
     console.log(record);
-    this.props.history.push('/admin/user/edit?id="as"')
+    this.props.history.push('/admin/user/log?id="as"')
+  }
+
+  editUser = (record) => {
+    console.log("edit----")
+    console.log(record);
+
+    //this.props.history.push('/admin/user/edit?id="as"')
   }
 
   componentDidMount(){
@@ -63,6 +73,7 @@ class Users extends React.Component {
 
           return (
             <ButtonGroup>
+              <Button onClick={_that.logUser.bind(this,record)}>日志</Button>
               <Button onClick={_that.editUser.bind(this,record)}>编辑</Button>
               <Button onClick={_that.deleteUser.bind(this,record)}>删除</Button>
             </ButtonGroup>
@@ -105,5 +116,26 @@ class Users extends React.Component {
 
 }
 
-export default Users;
-export { Users };
+const mapStateToProps = (state)=>{
+  console.log(state)
+  return {
+    list:state.logList
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  console.log('111111111111')
+  console.log(dispatch)
+  return {
+    increment: (id,cc) => {
+      dispatch({ 
+        type: "aaaa",
+        id:id
+      })
+    }
+  }
+}
+
+// 第一个参数，从store把state注入到当前组件的props上。
+// 第二个参数，把action生成的方法（reducer里面的方法）注入到当前组件中。。  或者，我们直接使用actionCreators 他会自动dispatch，不用手写
+export default connect(mapStateToProps,mapDispatchToProps)(Users)

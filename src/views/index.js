@@ -19,6 +19,11 @@ const Edit = Loadable({
   loading:Loading
 })
 
+const Message = Loadable({
+  loader:()=> import('./Users/Message'),
+  loading:Loading
+})
+
 const Home = Loadable({
   loader: ()=> import('./Home'),
   loading:Loading
@@ -45,5 +50,6 @@ export {
   Settings,
   Article,
   Notfound,
-  Edit
+  Edit,
+  Message
 }

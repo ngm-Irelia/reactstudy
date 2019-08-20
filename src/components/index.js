@@ -6,6 +6,8 @@ import Website from './Website';
 import CarList from './CarList';
 import Loading from './Loading';
 import Frame from './Frame';
+import Messages from './Message';
+
 export {
   Header,
   Lisk,
@@ -14,5 +16,6 @@ export {
   Website,
   CarList,
   Loading,
-  Frame
+  Frame,
+  Messages
 }
