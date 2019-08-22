@@ -35,14 +35,11 @@ class Users extends React.Component {
   }
 
   logUser = (record) => {
-    console.log(record);
     this.props.history.push('/admin/user/log?id="as"')
   }
 
   editUser = (record) => {
-    console.log("edit----")
-    console.log(record);
-
+    this.props.addLog(record.id,"用户ngm", (new Date()).toLocaleString(),"编辑了 "+record.username);
     //this.props.history.push('/admin/user/edit?id="as"')
   }
 
@@ -117,24 +114,27 @@ class Users extends React.Component {
 }
 
 const mapStateToProps = (state)=>{
-  console.log(state)
   return {
     list:state.logList
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  console.log('111111111111')
-  console.log(dispatch)
+
   return {
-    increment: (id,cc) => {
+    addLog: (id, name, time, msg) => {
       dispatch({ 
-        type: "aaaa",
-        id:id
+        type: "ADD_LOG",
+        id,
+        name,
+        time,
+        msg
       })
     }
   }
 }
+
+//把当前组件的用户操作，作为日志保存起来， 可以在日志页面查看。
 
 // 第一个参数，从store把state注入到当前组件的props上。
 // 第二个参数，把action生成的方法（reducer里面的方法）注入到当前组件中。。  或者，我们直接使用actionCreators 他会自动dispatch，不用手写

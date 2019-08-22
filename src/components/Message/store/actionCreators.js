@@ -1,5 +1,5 @@
 /* 统一存放action  作用就是生成了 action！！*/
-import { CART_INCREMENT, CART_DECREMENT } from './actionTypes';
+import { ADD_LOG } from './actionTypes';
 import axios from 'axios';
 
 // 其实是个函数 ， 返回 的是一个action
@@ -8,24 +8,15 @@ import axios from 'axios';
 	id:id
 }) */
 
-// 这个可以称作是一个 异步的action ，
-//在里面return了一个方法，里面dispatch 了一个action
-export const increment = (id) => { 
-	
-	return (dispatch) =>{
-		setTimeout(() => { // 模拟发送请求
-			dispatch({  // 这里用的还是 同步的action
-				type: CART_INCREMENT,
-				id:id
-			})
-		}, 10);
-	}
-}
 
-export const decrement = (id) => ({ 
-  type: CART_DECREMENT,
-	id:id
+export const addLog = (id, name, time, msg ) => ({ 
+  type: ADD_LOG,
+	id,
+	name,
+	time,
+	msg
 })
+
 
 /* const initListAction = (res) => ({ 
   type: INIT_LIST_ACTION,
