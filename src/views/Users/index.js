@@ -1,10 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Button, Badge, Card, Table, Row, Col } from 'antd';
 import { getUserList } from '../../services';
 
 import { connect } from 'react-redux';
 
 const ButtonGroup = Button.Group;
+
+function Example() {
+  // 声明一个叫 "count" 的 state 变量
+  const [count, setCount] = useState(0);
+  const [age, setAge] = useState(10);
+
+  function delAge(){
+    setAge(age - 1);
+  }
+
+  /**
+   *  React 保证了每次运行 effect 的同时，DOM 都已经更新完毕。
+      effect 等同于 componentDidMount 和 componentDidUpdate
+      可以return一个函数， 等同于 componentWillUnmount
+
+      Hook 其中一个目的就是要解决 class 中生命周期函数经常包含不相关的逻辑，
+      但又把相关逻辑分离到了几个不同方法中的问题。
+
+      在某些情况下，每次渲染后都执行清理或者执行 effect 可能会导致性能问题。
+      在 class 组件中，我们可以通过在 componentDidUpdate 中添加对 prevProps 或 prevState 的比较逻辑解决：
+   
+
+      通知 React 跳过对 effect 的调用，只要传递数组作为 useEffect 的第二个可选参数即可：
+      
+      useEffect(() => {
+        document.title = `You clicked ${count} times`;
+      }, [count]); // 仅在 count 更改时更新
+      */
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // Update the document title using the browser API
+    console.log(`You clicked ${count} times`);
+
+    // Specify how to clean up after this effect:
+    return function cleanup() {
+      //在这可以进行操作
+    };
+
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+
+      <p>You clicked {age} times</p>
+      <button onClick={delAge}>
+        Click me - 
+      </button>
+    </div>
+  );
+}
 
 class Users extends React.Component {
 
@@ -65,9 +120,6 @@ class Users extends React.Component {
         dataIndex: "doing",
         key: 'doing',
         render:function(text, record){
-          console.log(text)
-          console.log(record)
-
           return (
             <ButtonGroup>
               <Button onClick={_that.logUser.bind(this,record)}>日志</Button>
@@ -97,6 +149,8 @@ class Users extends React.Component {
         <Card title="用户列表" extra={<a onClick={this.toExcel}>导出excel</a>} >
           <Table rowKey={record => record.id } dataSource={dataSource} columns={columns} />
         </Card>
+
+        
         <Button onClick={this.handleBtnClick.bind(this)}>返回首页</Button>
         <Badge count={100} overflowCount={9} showZero>
           <span>message</span>
@@ -107,6 +161,8 @@ class Users extends React.Component {
           <Col span={4}>col-4</Col>
           <Col span={4}>col-4</Col>
         </Row>
+
+        <Example />
       </div>
     )
   }

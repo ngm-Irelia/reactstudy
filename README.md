@@ -376,3 +376,26 @@ render() {
 #### Refs 不会被传递
 
 #### 务必复制静态方法
+
+
+
+
+# HOOK
+/**
+React 保证了每次运行 effect 的同时，DOM 都已经更新完毕。
+effect 等同于 componentDidMount 和 componentDidUpdate
+可以return一个函数， 等同于 componentWillUnmount
+
+Hook 其中一个目的就是要解决 class 中生命周期函数经常包含不相关的逻辑，
+但又把相关逻辑分离到了几个不同方法中的问题。
+
+在某些情况下，每次渲染后都执行清理或者执行 effect 可能会导致性能问题。
+在 class 组件中，我们可以通过在 componentDidUpdate 中添加对 prevProps 或 prevState 的比较逻辑解决：
+
+
+通知 React 跳过对 effect 的调用，只要传递数组作为 useEffect 的第二个可选参数即可：
+
+useEffect(() => {
+  document.title = `You clicked ${count} times`;
+}, [count]); // 仅在 count 更改时更新
+*/
