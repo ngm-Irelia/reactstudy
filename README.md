@@ -399,3 +399,49 @@ useEffect(() => {
   document.title = `You clicked ${count} times`;
 }, [count]); // 仅在 count 更改时更新
 */
+
+
+
+# ********************  千峰教育  react精讲   **************
+1. redux 中间件的原理是什么？
+答： 改装 dispatch
+
+
+
+2. 你会把数据统一放到redux中管理，还是共享数据放到redux中管理？
+
+
+
+
+3. componentWillReceiveProps 的调用时机
+
+
+4. react性能优化最佳实践
+
+
+5. 虚拟dom是什么？ 为什么虚拟dom会提升代码性能？
+
+6. webpack中，借助loader完成jsx代码的转化，还是babel？
+
+7. 调用setState后，发生了什么？
+
+8. setState是异步的，这个点你再什么时候遇到坑
+
+9. refs的作用是什么。你在什么业务场景下使用refs
+
+10. ref是一个函数，有什么好处？
+
+11. 高阶组件你是怎么理解的，它本质是一个什么东西？
+
+12. 受控组件和非受控组件的区别
+
+13. 函数组件和hooks
+
+14. this指向问题，你一般怎么解决
+
+15. 函数组件怎么做性能优化
+
+16. 那个生命周期里面发送ajax
+
+17. ssr原理是什么？
+
