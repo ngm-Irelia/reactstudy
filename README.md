@@ -399,3 +399,32 @@ useEffect(() => {
   document.title = `You clicked ${count} times`;
 }, [count]); // 仅在 count 更改时更新
 */
+
+# ##########################################################################
+
+# 千锋教育 react常见问题
+
+1. redux 中间件的原理是什么？ 
+
+改装 dispatch
+指的是 action 和 store 之间。  两者之间的桥梁就是 dispatch
+
+redux-thunk 源码
+
+2. 你会把数据统一放到redux中管理，还是共享数据放在redux中管理？
+
+所有数据都放在redux， immutable
+
+3. componentWillReceiveProps 的调用时机
+
+props改变的时候，才会调用
+
+
+
+
+
+# ######################
+
+# 面试精讲5 
+
+1. 跨域解决方式  charles fiddler cors jsonp webpack-dev-server http-server-middleware
