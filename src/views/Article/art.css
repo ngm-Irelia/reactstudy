@@ -1,0 +1,7 @@
+.btn {
+  display: inline-block;
+  width: 10px;
+  background: #555;
+  margin: 5px;
+  cursor: pointer;
+}

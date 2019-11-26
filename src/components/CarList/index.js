@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { actionCreators } from './store';
+import * as actionCreators from '../../actions/CarList-actionCreators';
 
 class CarList extends Component {
   

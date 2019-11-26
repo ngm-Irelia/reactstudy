@@ -1,4 +1,4 @@
-import { ADD_LOG } from './actionTypes'
+import { ADD_LOG } from '../actions/actionTypes'
 
 const initState = [
   {
@@ -15,7 +15,8 @@ const initState = [
   }
 ];
 
-export default( (state = initState, action)=>{
+
+export default ((state = initState, action)=>{
   
   if(action.type === ADD_LOG){
     console.log(" in  add-log action ");

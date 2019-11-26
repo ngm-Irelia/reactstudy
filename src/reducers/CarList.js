@@ -1,4 +1,4 @@
-import { CART_INCREMENT, CART_DECREMENT } from './actionTypes'
+import { CART_INCREMENT, CART_DECREMENT } from '../actions/actionTypes'
 
 const initState = [
   {

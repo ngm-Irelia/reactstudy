@@ -100,14 +100,17 @@ class Users extends React.Component {
 
   componentDidMount(){
     let _that = this;
-    getUserList().then(function(response){
-      let dataSource = response.data.users;  // 数据
+    
+      let dataSource = [{
+        title: "操作",
+        dataIndex: "doing",
+        key: 'doing',
+      }];  // 数据
+      
       //数据显示
       let columnsList = [];
-      if(!dataSource || dataSource.length < 1){ return ''; }
       let columnKeys = Object.keys(dataSource[0]);
       columnKeys.map((item)=>{
-        console.log(item)
         columnsList.push({
           title: item,
           dataIndex: item,
@@ -134,7 +137,7 @@ class Users extends React.Component {
         dataSource:dataSource,
         columns:columnsList
       })
-    })
+    
   }
 
   render() {
