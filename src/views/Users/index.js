@@ -1,6 +1,6 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect, createRef  } from 'react';
 import { Button, Badge, Card, Table, Row, Col } from 'antd';
-import { getUserList } from '../../services';
+import { getUserList, uploadFile } from '../../services';
 
 import { connect } from 'react-redux';
 
@@ -69,6 +69,9 @@ class Users extends React.Component {
       dataSource:[],
       columns: []
     }
+
+    //在这 创建 ref
+    this.inputDom = createRef();
   }
 
   handleBtnClick(e){
@@ -96,6 +99,13 @@ class Users extends React.Component {
   editUser = (record) => {
     this.props.addLog(record.id,"用户ngm", (new Date()).toLocaleString(),"编辑了 "+record.username);
     //this.props.history.push('/admin/user/edit?id="as"')
+  }
+
+  upFile = (data) => {
+    console.log("unloadFile");
+    console.log(this.inputDom.current);
+    console.log(this.inputDom.current.files[0]);
+    uploadFile(this.inputDom.current.files[0]);
   }
 
   componentDidMount(){
@@ -165,6 +175,12 @@ class Users extends React.Component {
           <Col span={4}>col-4</Col>
         </Row>
 
+        <input 
+          key="asd"
+          type="file" 
+          ref={ this.inputDom } 
+        />
+        <div onClick={this.upFile}>上传文件</div>
         <Example />
       </div>
     )

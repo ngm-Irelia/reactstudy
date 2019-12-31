@@ -1,4 +1,5 @@
 export default {
-  baseUrl :"http://127.0.0.1:9600",
-  getUserList: '/user/getUserList'
+  baseUrl :"/server/",
+  getUserList: '/user/getUserList',
+
 }
